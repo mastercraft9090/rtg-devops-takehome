@@ -35,7 +35,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to ECR
-        id: ecr_user
+        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
         
         
@@ -44,7 +44,7 @@ jobs:
       - name: Build tag and push the image to ECR
         id: take_home_1
         env:
-          ECR_REGISTRY: ${{ steps.ecr_user.outputs.registry }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: take_home
           IMAGE_TAG: latest
         run: |
