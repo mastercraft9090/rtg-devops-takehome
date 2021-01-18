@@ -1,9 +1,7 @@
-version: "3" 
-  services: 
-    client: 
-      build:
-       context: /home/richman/projects/rtg-devops-takehome
-       dockerfile: Dockerfile
-    #  volumes: # Links the source files to the running container 
-    #   - /home/richman/projects/rtg-devops-takehome:/usr/src/ 
-     ports: - "8080:8080"
+version: "3.3"
+services:
+  web:
+    image: 573606317516.dkr.ecr.us-east-1.amazonaws.com/take_home:latest
+    container_name: nodejs_app
+    ports:
+      - "8080:8080"
