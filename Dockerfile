@@ -1,16 +1,18 @@
-#what version of this do we need
-FROM node:10
 
-#I am using your own
+FROM node:alpine
+
+#Recursively create working directory
 WORKDIR /usr/src/take_home_app
 
 #What does the ./ mean?
 COPY package*.json ./
-
+RUN npm update
 RUN npm install
 
+#copy the whole source folder(the dir is relative to the Dockerfile)
 COPY . .
 
-EXPOSE 8080
+#Here they expose 80
+FROM nginx EXPOSE 8080
 
-CMD [ "node" , "gatsby-browser.js" , "gatsby-config.js" , "gatsby-node.js" , "gatsby-ssr.js"]
+CMD [ "npm" , "run" , "start" ]
